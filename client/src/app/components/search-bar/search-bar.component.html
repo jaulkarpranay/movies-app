@@ -1,0 +1,43 @@
+<div class="w-full pt-4 pb-12">
+  <div class="max-w-screen-lg mx-auto">
+    <div class="w-full flex flex-col space-y-6">
+      <div class="flex items-center w-full h-12 px-6">
+        <input
+          type="text"
+          class="w-[90%] rounded-l-md h-full outline-none p-4"
+          [(ngModel)]="searchQuery.query"
+          placeholder="Search Movie"
+        />
+        <button (click)="handleSearch()" class="h-full grow p-3 rounded-r-md bg-green-500">Search</button>
+      </div>
+      <div class="flex flex-col space-y-2 md:space-y-0 md:flex-row items-center space-x-8 md:w-[800px] mx-auto">
+        <div class="flex items-center grow space-x-4">
+          <span class="text-white w-16 text-xl">Rating</span>
+          <select name="rating" [(ngModel)]="searchQuery.rating" class="px-2 py-1 rounded-md outline-none" id="">
+            <option *ngFor="let i of counter(10)" [value]="i + 1">{{ i + 1 }}</option>
+          </select>
+        </div>
+        <div class="flex items-center grow space-x-4">
+          <span class="text-white text-xl">Min Release Year</span>
+          <input
+            type="number"
+            name="releaseYear"
+            [(ngModel)]="searchQuery.releaseYear"
+            class="px-2 py-1 rounded-md outline-none max-w-28"
+            min="1900"
+            max="2030"
+          />
+        </div>
+        <div class="flex items-center grow space-x-4">
+          <span class="text-white text-xl">Sort By</span>
+          <select name="rating" [(ngModel)]="searchQuery.sortBy" class="px-2 py-1 rounded-md outline-none" id="">
+            <option value="-rating">Rating High to Low</option>
+            <option value="rating">Rating Low to High</option>
+            <option value="-releaseYear">Release Year High to Low</option>
+            <option value="releaseYear">Release Year Low to High</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

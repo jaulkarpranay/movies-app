@@ -1,0 +1,32 @@
+<div class="relative md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto h-full">
+  <app-search-bar class="mb-16" (search)="handleSearch($event)" />
+
+  <div *ngIf="loading; else realContent" class="flex w-full h-full justify-center items-center md:min-h-[633px]">
+    <span class="text-xl text-white">Loading....</span>
+  </div>
+  <ng-template #realContent>
+    <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 md:gap-x-8 gap-y-12">
+      <app-movie
+        *ngFor="let movie of movies"
+        [movie]="movie"
+        (updateMovie)="handleUpdate($event)"
+        (deleteMovie)="handleDelete($event)"
+      />
+    </ul>
+
+    <app-create-modal
+      [movieToUpdate]="movieToUpdate"
+      (close)="handleCreateModalClose($event)"
+      (updated)="handleUpdatedMovie($event)"
+      (created)="handleCreatedMovie($event)"
+    />
+
+    <app-delete-modal
+      [movieToDelete]="movieToDelete"
+      (deleted)="handleDeletedMovie($event)"
+      (close)="handleDeleteModalClose($event)"
+    />
+  </ng-template>
+
+  <app-pagination [currentPage]="currentPage" [maxNoOfPages]="maxNoOfPages" (pageChange)="handlePageChange($event)" />
+</div>

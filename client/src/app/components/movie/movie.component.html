@@ -1,0 +1,37 @@
+<li class="flex flex-col items-center hover:cursor-pointer">
+  <div class="w-full min-w-24 px-6">
+    <a class="group relative mx-auto flex justify-center">
+      <div
+        class="absolute w-full h-full opacity-0 group-hover:opacity-100 bg-[rgba(0,0,0,0.5)] transition-all duration-200 flex flex-col justify-center items-center"
+      >
+        <span class="text-white text-2xl font-bold">{{ movie.rating / 10 }} / 10</span>
+        <span class="text-white text-2xl font-bold">{{ movie.releaseYear }}</span>
+      </div>
+
+      <img
+        *ngIf="movie.imageSet; else dummyImageBlock"
+        [src]="movie.imageSet.verticalPoster.w240"
+        class="w-[174px] h-[232px] object-cover border-white group-hover:border-green-400 transition-all duration-200 border-4 rounded"
+        alt=""
+        #imageBlock
+      />
+      <ng-template #dummyImageBlock>
+        <img
+          src="/dummy-image.png"
+          class="w-[174px] h-[232px] object-contain bg-white border-white hover:border-green-400 transition-all duration-200 border-4 rounded"
+          alt="Image not Provided"
+      /></ng-template>
+    </a>
+    <h3 class="break-words break-all text-white mt-4 mb-2">
+      {{ movie.title }}
+    </h3>
+    <div class="flex w-full space-x-2">
+      <div (click)="handleUpdate()" class="flex justify-center w-1/2 bg-slate-200 p-1 rounded-md">
+        <mat-icon class="text-blue-500">edit</mat-icon>
+      </div>
+      <div (click)="handleDelete()" class="flex justify-center w-1/2 bg-slate-200 p-1 rounded-md">
+        <mat-icon class="text-red-500">delete</mat-icon>
+      </div>
+    </div>
+  </div>
+</li>

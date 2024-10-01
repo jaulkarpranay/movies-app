@@ -1,0 +1,123 @@
+<div
+  (click)="open()"
+  class="fixed bottom-20 right-20 flex justify-center items-center rounded-2xl w-20 h-20 bg-slate-300 border shadow-lg"
+>
+  <mat-icon [ngStyle]="{ width: '48px', height: '48px' }" class="text-5xl"
+    >add</mat-icon
+  >
+</div>
+<div
+  *ngIf="isOpen"
+  class="fixed bottom-0 top-0 left-0 right-0 w-screen h-screen flex justify-center items-center bg-[rgba(0,0,0,0.3)]"
+>
+  <div class="px-4 min-w-60 w-[350px] sm:w-[450px] md:w-[550px] max-h-screen">
+    <form
+      (submit)="handleSubmit($event)"
+      class="flex w-full flex-col p-4 rounded-xl bg-slate-200"
+    >
+      <div class="text-3xl w-full flex justify-between mb-4">
+        <h3>Add A Movie</h3>
+        <mat-icon (click)="closeModal()">close</mat-icon>
+      </div>
+
+      <div class="flex flex-col space-y-3 w-full">
+        <!-- Title -->
+        <div class="flex flex-col">
+          <span class="mb-1">Title</span>
+          <input
+            name="title"
+            [(ngModel)]="movieData.title"
+            class="rounded-md p-2 focus:outline-none"
+            placeholder="Title of Movie"
+            type="text"
+          />
+          <span class="text-red-500 mt-1" *ngIf="formError.title">{{
+            formError.title
+          }}</span>
+        </div>
+
+        <!-- IMDB ID -->
+        <div class="flex flex-col">
+          <span class="mb-1">IMDB ID</span>
+          <input
+            name="imdbId"
+            [(ngModel)]="movieData.imdbId"
+            class="rounded-md p-2 focus:outline-none"
+            placeholder="IMDB ID of Movie"
+            type="text"
+          />
+          <span class="text-red-500 mt-1" *ngIf="formError.imdbId">{{
+            formError.imdbId
+          }}</span>
+        </div>
+
+        <!-- Directors -->
+        <div class="flex flex-col">
+          <span class="mb-1">Directors</span>
+          <input
+            name="directors"
+            [(ngModel)]="movieData.directors"
+            class="rounded-md p-2 focus:outline-none"
+            placeholder="Enter Directors separated by coma"
+            type="text"
+          />
+          <span class="text-red-500 mt-1" *ngIf="formError.directors">{{
+            formError.directors
+          }}</span>
+        </div>
+
+        <!-- Rating and Release Year -->
+        <div class="flex space-x-2">
+          <!-- Rating -->
+          <div class="flex flex-col w-1/2">
+            <span class="mb-1">Rating</span>
+            <input
+              name="rating"
+              [(ngModel)]="movieData.rating"
+              class="rounded-md p-2 focus:outline-none"
+              placeholder="Rating"
+              type="number"
+              max="10"
+              min="0"
+            />
+            <span class="text-red-500 mt-1" *ngIf="formError.rating">{{
+              formError.rating
+            }}</span>
+          </div>
+
+          <!-- Realease Date -->
+          <div class="flex flex-col w-1/2">
+            <span class="mb-1">Release Year</span>
+            <input
+              name="releaseYear"
+              [(ngModel)]="movieData.releaseYear"
+              class="rounded-md p-2 focus:outline-none"
+              type="number"
+              min="1900"
+              max="2030"
+            />
+            <span class="text-red-500 mt-1" *ngIf="formError.releaseYear">{{
+              formError.releaseYear
+            }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex w-full mt-6 text-white justify-end space-x-6">
+        <button
+          (click)="closeModal()"
+          type="button"
+          class="flex px-4 py-1.5 justify-center items-center cursor-pointer rounded-md transition-all duration-200 bg-red-500 hover:bg-red-700"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="flex px-4 py-1.5 justify-center items-center cursor-pointer rounded-md transition-all duration-200 bg-blue-500 hover:bg-blue-700"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

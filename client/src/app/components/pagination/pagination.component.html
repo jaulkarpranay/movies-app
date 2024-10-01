@@ -1,0 +1,65 @@
+<div class="w-full mt-12">
+  <div class="flex mx-auto justify-center items-center space-x-2 px-2 mt-4">
+    <!-- decrement -->
+    <div
+      (click)="decrementPage()"
+      class="p-2 bg-slate-300 rounded-full flex justify-center items-center transition-all duration-200 hover:bg-slate-400 cursor-pointer"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </div>
+
+    <div *ngIf="currentPage > 4" class="flex space-x-1">
+      <span
+        (click)="handleClick(1)"
+        class="size-10 flex justify-center items-center rounded-full p-2 text-white border border-slate-200 cursor-pointer transition-all duration-200 hover:bg-slate-900"
+        >1
+      </span>
+      <div class="flex items-end space-x-2 mx-2">
+        <span class="rounded-full size-1 bg-white border"></span>
+        <span class="rounded-full size-1 bg-white border"></span>
+        <span class="rounded-full size-1 bg-white border"></span>
+      </div>
+    </div>
+
+    <div class="flex space-x-2">
+      <span
+        (click)="handleClick(i)"
+        *ngFor="let i of range(currentPage - 3, currentPage)"
+        class="size-10 flex justify-center items-center rounded-full p-2 text-white border border-slate-200 cursor-pointer transition-all duration-200 hover:bg-slate-900"
+        >{{ i }}
+      </span>
+      <!-- current page no -->
+      <span
+        class="size-10 flex justify-center items-center rounded-full p-2 text-slate-900 bg-slate-200 border border-slate-200 cursor-pointer transition-all duration-200"
+        >{{ currentPage }}
+      </span>
+      <span
+        (click)="handleClick(i)"
+        *ngFor="let i of range(currentPage + 1, currentPage + 4)"
+        class="size-10 flex justify-center items-center rounded-full p-2 text-white border border-slate-200 cursor-pointer transition-all duration-200 hover:bg-slate-900"
+        >{{ i }}
+      </span>
+    </div>
+
+    <!-- max no. of pages -->
+    <div *ngIf="currentPage < maxNoOfPages && maxNoOfPages > 5" class="flex space-x-1">
+      <div class="flex items-end space-x-2 mx-2">
+        <span class="rounded-full size-1 bg-white border"></span>
+        <span class="rounded-full size-1 bg-white border"></span>
+        <span class="rounded-full size-1 bg-white border"></span>
+      </div>
+      <span
+        (click)="handleClick(maxNoOfPages)"
+        class="size-10 flex justify-center items-center rounded-full p-2 text-white border border-slate-200 cursor-pointer transition-all duration-200 hover:bg-slate-900"
+        >{{ maxNoOfPages }}
+      </span>
+    </div>
+    <!-- increment -->
+    <div
+      (click)="incrementPage()"
+      class="p-2 bg-slate-300 rounded-full flex justify-center items-center transition-all duration-200 hover:bg-slate-400 cursor-pointer"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </div>
+  </div>
+</div>

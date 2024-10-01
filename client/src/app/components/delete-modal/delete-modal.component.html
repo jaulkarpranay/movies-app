@@ -1,0 +1,31 @@
+<div
+  *ngIf="isOpen"
+  class="fixed bottom-0 top-0 left-0 right-0 w-screen h-screen flex justify-center items-center bg-[rgba(0,0,0,0.3)]"
+>
+  <div class="px-4 min-w-60 w-[350px] sm:w-[450px]">
+    <form
+      (submit)="handleSubmit($event)"
+      class="flex w-full flex-col p-4 rounded-xl bg-slate-200"
+    >
+      <span class="w-full break-word overflow-auto text-center">
+        Are you sure you want to delete {{ movieToDelete?.title }}?
+      </span>
+
+      <div class="flex w-full mt-6 text-white justify-around space-x-6">
+        <button
+          (click)="closeModal()"
+          type="button"
+          class="flex px-4 py-1.5 justify-center items-center cursor-pointer rounded-md transition-all duration-200 bg-blue-500 hover:bg-blue-700"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="flex px-4 py-1.5 justify-center items-center cursor-pointer rounded-md transition-all duration-200 bg-red-500 hover:bg-red-700"
+        >
+          Delete
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
